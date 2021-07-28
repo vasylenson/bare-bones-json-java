@@ -1,10 +1,8 @@
-package main.java.jsontypes;
+package main.java;
 
-interface JSONElement {
-    public void accept(JSONVisitor visitor);
-}
+import main.java.jsonast.*;
 
-interface JSONVisitor {
+public interface JSONVisitor {
     public void visit(JSONNull element);
     public void visit(JSONBool element);
     public void visit(JSONInteger element);

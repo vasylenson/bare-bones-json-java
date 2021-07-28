@@ -1,5 +1,6 @@
-package main.java.jsontypes;
+package main.java.jsonast;
 
+import main.java.JSONVisitor;
 import java.util.Hashtable;
 import java.util.Map;
 
