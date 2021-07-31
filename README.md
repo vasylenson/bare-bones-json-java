@@ -8,10 +8,11 @@ This is a study. This is obvious from the fact of java already having a JSON par
 
 ### Goals
 
-- OOP principles, GoF, GRASP design patterns
-- Java language features, idiomatic Java code
-- Java standard library, interfaces, developing classes that integrate well with language features
-- actually have a bit of fun and explore the paradigm and the platform
+- learning the principles of OOP, GoF, GRASP design patterns
+- studying Java 
+  - the language features, idiomatic Java code
+  - Java standard library, interfaces, developing classes that integrate well with language features
+- actually having a bit of fun and explore the paradigm and the platform
 
 ### Non-goals
 
