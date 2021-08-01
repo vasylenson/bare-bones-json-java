@@ -1,6 +1,6 @@
 package main.java.jsonast;
 
-import main.java.JSONVisitor;
+import main.java.Visitor;
 
 public class JSONArray implements JSONElement {
 
@@ -10,7 +10,7 @@ public class JSONArray implements JSONElement {
         this.items = items;
     }
 
-    public void accept(JSONVisitor visitor) {
+    public void accept(Visitor visitor) {
         visitor.visit(this);
     }
 

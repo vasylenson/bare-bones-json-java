@@ -1,6 +1,6 @@
 package main.java.jsonast;
-import main.java.JSONVisitor;
+import main.java.Visitor;
 
 public interface JSONElement {
-    public void accept(JSONVisitor visitor);
+    public void accept(Visitor visitor);
 }

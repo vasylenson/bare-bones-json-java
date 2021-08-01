@@ -5,7 +5,7 @@ import java.util.Map.Entry;
 
 import main.java.jsonast.*;
 
-public class JSONRenderer implements JSONVisitor {
+public class Renderer implements Visitor {
 
     private String text;
 

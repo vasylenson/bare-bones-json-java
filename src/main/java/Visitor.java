@@ -2,7 +2,7 @@ package main.java;
 
 import main.java.jsonast.*;
 
-public interface JSONVisitor {
+public interface Visitor {
     public void visit(JSONNull element);
     public void visit(JSONBool element);
     public void visit(JSONInteger element);

@@ -1,6 +1,6 @@
 package main.java.jsonast;
 
-import main.java.JSONVisitor;
+import main.java.Visitor;
 
 public class JSONBool implements JSONElement {
 
@@ -14,7 +14,7 @@ public class JSONBool implements JSONElement {
         this.value = value;
     }
 
-    public void accept(JSONVisitor visitor) {
+    public void accept(Visitor visitor) {
         visitor.visit(this);
     }
     
