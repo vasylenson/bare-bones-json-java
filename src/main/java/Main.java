@@ -1,6 +1,5 @@
 package main.java;
 
-import java.util.ArrayList;
 import java.util.Collection;
 
 import main.java.jsonast.*;
@@ -29,8 +28,11 @@ public class Main {
         System.out.println("Tokenizer test:");
 
         TreeTokenizer toki = new TreeTokenizer();
-        tokens = toki.tokenize(myArr);
+        Printer printi = new Printer();
 
+        tokens = toki.tokenize(myArr);
         System.out.println(tokens);
+        System.out.println("\n");
+        System.out.println(printi.print(tokens));
     }
 }

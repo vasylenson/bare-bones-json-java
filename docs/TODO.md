@@ -37,8 +37,8 @@
 - [ ] Renderer
   - [x] Get the basic renderer up and and running
   - [ ] Proper printer
-    - [ ] JSON CST -> Tokens
-    - [ ] Printer: Tokens -> Text
+    - [x] JSON CST -> Tokens
+    - [x] Printer: Tokens -> Text (basic and hacky)
     - [ ] Decoupled formatter for Printer
 - [ ] other stuff to have in mind
   - [ ] Schema manager
