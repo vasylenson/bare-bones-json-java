@@ -1,7 +1,6 @@
 package main.java;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Iterator;
 import java.util.Map.Entry;
 
@@ -12,7 +11,7 @@ public class TreeTokenizer implements JSONElementVisitor {
 
     private ArrayList<Token> tokens;
 
-    public Collection<Token> tokenize(JSONElement element) {
+    public ArrayList<Token> tokenize(JSONElement element) {
         tokens = new ArrayList<Token>();
         element.accept(this);
         return tokens;

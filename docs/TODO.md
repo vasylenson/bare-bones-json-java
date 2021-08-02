@@ -39,6 +39,7 @@
   - [ ] Proper printer
     - [x] JSON CST -> Tokens
     - [x] Printer: Tokens -> Text (basic and hacky)
+    - [x] Printer interface, Pretty printer
     - [ ] Decoupled formatter for Printer
 - [ ] other stuff to have in mind
   - [ ] Schema manager

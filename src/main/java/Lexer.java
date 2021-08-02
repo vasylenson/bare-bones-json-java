@@ -1,7 +1,6 @@
 package main.java;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.EnumSet;
 import java.lang.Character;
 
@@ -12,7 +11,7 @@ public class Lexer {
     private static EnumSet<Type> delimiters = Token.Type.getDelimiters();
     private static EnumSet<Type> wordLiterals = EnumSet.of(Type.NULL, Type.TRUE, Type.FALSE);
 
-    public static Collection<Token> lex(String json) throws Exception {
+    public static ArrayList<Token> lex(String json) throws Exception {
         ArrayList<Token> tokens = new ArrayList<Token>();
 
         for (int currentPos = 0; currentPos < json.length(); currentPos++) {

@@ -3,7 +3,7 @@ package main.java;
 import java.util.EnumSet;
 
 public class Token {
-    enum Type {
+    public enum Type {
         LSQUARE("["), RSQUARE("]"),
 
         LCURLY("{"), RCURLY("}"),

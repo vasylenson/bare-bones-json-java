@@ -1,11 +1,12 @@
-package main.java;
+package main.java.Printer;
 
-import java.util.Collection;
+import java.util.List;
 
+import main.java.Token;
 import main.java.Token.Type;
 
-public class Printer {
-    public String print(Collection<Token> tokens) {
+public class InlinePrinterer implements Printer {
+    public String print(List<Token> tokens) {
         String output = "";
 
         for (Token token : tokens) {
