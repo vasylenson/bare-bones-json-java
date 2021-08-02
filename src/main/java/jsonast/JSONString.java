@@ -1,9 +1,9 @@
 package main.java.jsonast;
 
-import main.java.Visitor;
+import main.java.JSONElementVisitor;
 
 public class JSONString implements JSONElement {
-    
+
     String value;
 
     public String getValue() {
@@ -14,7 +14,7 @@ public class JSONString implements JSONElement {
         this.value = value;
     }
 
-    public void accept(Visitor visitor) {
+    public void accept(JSONElementVisitor visitor) {
         visitor.visit(this);
     }
 }

@@ -5,7 +5,7 @@ import java.util.Map.Entry;
 
 import main.java.jsonast.*;
 
-public class Renderer implements Visitor {
+public class Renderer implements JSONElementVisitor {
 
     private String text;
 
@@ -43,7 +43,7 @@ public class Renderer implements Visitor {
     public void visit(JSONArray element) {
         text += "[ ";
 
-        // TODO: figure out the idiomatic way to join a complex collection like this 
+        // TODO: figure out the idiomatic way to join a complex collection like this
         // Basically, find how to do a list comprehension
         JSONElement[] arrayItems = element.getItems();
         arrayItems[0].accept(this);;
@@ -53,7 +53,7 @@ public class Renderer implements Visitor {
             JSONElement item = arrayItems[i];
             item.accept(this);;
         }
-        
+
         text += " ]";
     }
 
@@ -62,11 +62,12 @@ public class Renderer implements Visitor {
         text += "{ ";
 
         Iterator<Entry<String, JSONElement>> items = element.getItems().iterator();
-        while(items.hasNext()) {
+        while (items.hasNext()) {
             Entry<String, JSONElement> entry = items.next();
             renderObjectEntry(entry);
 
-            if(items.hasNext()) text += ", ";
+            if (items.hasNext())
+                text += ", ";
         }
 
         text += " }";
@@ -76,5 +77,5 @@ public class Renderer implements Visitor {
         text += "\"" + entry.getKey() + " : ";
         entry.getValue().accept(this);;
     }
-    
+
 }

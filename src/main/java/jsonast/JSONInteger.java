@@ -1,6 +1,6 @@
 package main.java.jsonast;
 
-import main.java.Visitor;
+import main.java.JSONElementVisitor;
 
 public class JSONInteger implements JSONElement {
 
@@ -14,8 +14,8 @@ public class JSONInteger implements JSONElement {
         this.value = value;
     }
 
-    public void accept(Visitor visitor) {
+    public void accept(JSONElementVisitor visitor) {
         visitor.visit(this);
     }
-    
+
 }
