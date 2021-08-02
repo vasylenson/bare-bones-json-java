@@ -101,7 +101,7 @@ public class Lexer {
         for (int currentPos = offset; currentPos < json.length(); currentPos++) {
             currentChar = json.charAt(currentPos);
 
-            if (!Character.isDigit(currentPos))
+            if (!Character.isDigit(currentChar))
                 break;
 
             content += currentChar;

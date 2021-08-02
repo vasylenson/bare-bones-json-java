@@ -70,7 +70,12 @@ public class Token {
     }
 
     public String toString() {
-        return "<token \"" + getText() + "\">";
+        String string = "<token " + type.toString();
+        if (type.isLiteral()) {
+            string += " \"" + getText() + "\"";
+        }
+        string += ">";
+        return string;
     }
 
 }

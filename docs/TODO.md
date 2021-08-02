@@ -30,10 +30,16 @@
       - [ ] deep
       - [ ] shallow
   - [ ] JSON tree structure introspection
-- [ ] Parser
+- [ ] Parsing
+  - [x] Tokens
+  - [x] Lexer
+  - [ ] Token Parser
 - [ ] Renderer
   - [x] Get the basic renderer up and and running
-  - [ ] decoupled Formatter
+  - [ ] Proper printer
+    - [ ] JSON CST -> Tokens
+    - [ ] Printer: Tokens -> Text
+    - [ ] Decoupled formatter for Printer
 - [ ] other stuff to have in mind
   - [ ] Schema manager
     - [ ] Extract a schema from an CST and store it (or have schema represented as an actual CST)
@@ -65,4 +71,4 @@ Each feature is implemented through a dedicated visitor class.
 ## Java features to check out
 
 - implementing `Map` or `List` interface in custom objects for more idiomatic access and looping
-- getting something like C++'s initializer list for custom classes (possibly, `Map`s)
+- getting something like C++ initializer list for custom classes (possibly, `Map`s)
