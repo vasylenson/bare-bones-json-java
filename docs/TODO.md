@@ -10,12 +10,14 @@
 
 ## JSON manipulation features
 
-- [ ] Rendering to string
+- [x] Rendering to string
 - [ ] Parsing from string   
 - [ ] Finding/aggregating elements
 - [ ] AST maniputaion
 - [ ] Schema-guided manipulation
 - [ ] Java class serialization/deserialization
+
+Each feature is implemented through a dedicated visitor class.
 
 ## Concrete development goals
 
@@ -48,8 +50,6 @@
     - [ ] Schema-matching on a more complex tree
   - [ ] Java object serializaion
     - 
-
-Each feature is implemented through a dedicated visitor class.
 
 ## Design patterns to check out
 

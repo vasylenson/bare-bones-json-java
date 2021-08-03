@@ -5,7 +5,7 @@ import java.util.List;
 import main.java.Token;
 import main.java.Token.Type;
 
-public class PrettyPrinter implements Printer {
+public class PrettyPrinter implements TokenPrinter {
 
     private final String INDENT;
 
@@ -40,6 +40,7 @@ public class PrettyPrinter implements Printer {
                 output += getNextToken(tokens).getText();
             }
         }
+
         return output;
     }
 

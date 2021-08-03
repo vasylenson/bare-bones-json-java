@@ -3,7 +3,7 @@ package main.java;
 import java.util.List;
 
 import main.java.Printer.PrettyPrinter;
-import main.java.Printer.Printer;
+import main.java.Printer.TokenPrinter;
 import main.java.jsonast.*;
 
 public class Main {
@@ -33,7 +33,7 @@ public class Main {
         System.out.println("Tokenizer test:");
 
         TreeTokenizer toki = new TreeTokenizer();
-        Printer printi = new PrettyPrinter();
+        TokenPrinter printi = new PrettyPrinter();
 
         tokens = toki.tokenize(myArr);
         System.out.println(tokens);

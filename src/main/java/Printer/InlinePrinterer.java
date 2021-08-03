@@ -5,7 +5,7 @@ import java.util.List;
 import main.java.Token;
 import main.java.Token.Type;
 
-public class InlinePrinterer implements Printer {
+public class InlinePrinterer implements TokenPrinter {
     public String print(List<Token> tokens) {
         String output = "";
 

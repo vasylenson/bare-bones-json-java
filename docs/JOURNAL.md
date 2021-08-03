@@ -13,6 +13,8 @@ Please, pleeease don't read this crap, save yourself some time.
   - [Deep Visitor](#deep-visitor)
 - [Day 3-5](#day-3-5)
   - [Oh right, lexing](#oh-right-lexing)
+- [Big boy printing](#big-boy-printing)
+- [Writers](#writers)
 
 ## Day 1
 
@@ -127,4 +129,23 @@ public static Collection<Token> lex(String json) throws Exception {
 }
 ```
 
-As someone once said, *"this approach is not nice not flexible and not object-oriented at all"*, but is works for now and will surely improve it later.
+As [someone once said](https://www.oodesign.com/visitor-pattern.html), *"this approach is not nice not flexible and not object-oriented at all"*, but is works for now and will surely improve it later.
+
+# Day 6
+
+## Big boy printing
+
+After writing that monstrosity above, I went out to see how it's done in real life JSON projects, namely GSON and jackson. I actually spent an evening digging through Google's 1K-line classes and studied GSON's architecture - and it was pretty fun! Even more than that, I've found that both libraries made one decision in a different way than I did...
+
+## Writers
+
+Instead of using recursive construction of output string, they use a separate `Writer` instance to conveniently manage the accumulation of the output. And that makes sense for several reasons:
+
+1. Writing the recursive return accumulation was painful and very error-prone. I think I've spent more time trying to debug it than implementing it
+2. External writer, I reckon, is a more idiomatic and correct OO design
+   1. it encapsulates the stateful object, the output string and lets it manage its modifications properly and safely
+   2. it allows separating the formatting (done somewhere in the writer) from the token stream interpretation
+
+While on the topic of formatting, now should be the time to design a formatter-aware printer and writer. My initial idea of the `Writer` interface was to make it do all it can possibly do, i.e. put the symbols in. But even with the added bonus of nice call naming, this is not safe enough. Such actions ought to rather be `Writer`'s private methods so that its interface is idiomatic to JSON's syntax. And then, formatting can be handled inside the writer and customized with the Template Method or Strategy pattern. Or even hard-coded or customized through internal variable parameters, for all we care, as this does not effect its interface.
+
+In this setting, the role of `Printer` receiving a stream of tokens will just be to eliminate the clutter of braces and delimiters and transtale the stream into idiomatic JSON printing requests. It probably shouldn't even manage the lifetime of the `Writer` or return the string. All of than can be later done in a Fasade.
