@@ -1,6 +1,6 @@
 package main.java.Printer;
 
-public class DefaultWriter implements JSONWriter {
+public class DefaultWriter implements JSONBuilder {
 
     private final String indent;
 
@@ -11,34 +11,38 @@ public class DefaultWriter implements JSONWriter {
         this.indent = indent;
     }
 
-    @Override
     public String getOutpuString() {
         return out;
     }
 
     @Override
-    public void putPrimitive() {
+    public void putNull() {
         formatPrimitive("null");
     }
 
     @Override
-    public void putPrimitive(boolean bool) {
-        formatPrimitive(String.valueOf(bool));
+    public void putTrue() {
+        formatPrimitive("true");
     }
 
     @Override
-    public void putPrimitive(Number number) {
-        formatPrimitive(String.valueOf(number));
+    public void putFalse() {
+        formatPrimitive("false");
     }
 
     @Override
-    public void putPrimitive(String string) {
-        formatPrimitive("\"" + string + "\"");
+    public void putNumber(String representation) {
+        formatPrimitive(representation);
+    }
+
+    @Override
+    public void putString(String representation) {
+        formatPrimitive(representation);
     }
 
     @Override
     public void putKey(String key) {
-        out += "\"" + key + "\": ";
+        out += key + ": ";
     }
 
     @Override

@@ -13,7 +13,7 @@ public class Token {
 
         NULL("null"), TRUE("true"), FALSE("false"),
 
-        STRING(null), INTEGER(null);
+        STRING(null), NUMBER(null);
 
         private final String text;
 
@@ -30,7 +30,7 @@ public class Token {
         }
 
         public boolean isLiteral() {
-            return this == STRING || this == INTEGER || this == NULL || this == TRUE || this == FALSE;
+            return this == STRING || this == NUMBER || this == NULL || this == TRUE || this == FALSE;
         }
 
         public boolean isDelimiter() {
@@ -38,7 +38,7 @@ public class Token {
         }
 
         public static EnumSet<Type> getDelimiters() {
-            EnumSet<Type> literals = EnumSet.of(STRING, INTEGER);
+            EnumSet<Type> literals = EnumSet.of(STRING, NUMBER);
             return EnumSet.complementOf(literals);
         }
     }
@@ -70,12 +70,7 @@ public class Token {
     }
 
     public String toString() {
-        String string = "<token " + type.toString();
-        if (type.isLiteral()) {
-            string += " \"" + getText() + "\"";
-        }
-        string += ">";
+        String string = "<token " + type.toString() + (type.isLiteral() ? getText() : "") + ">";
         return string;
     }
-
 }

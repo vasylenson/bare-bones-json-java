@@ -11,6 +11,7 @@ public class TreeTokenizer implements JSONElementVisitor {
 
     private ArrayList<Token> tokens;
 
+    // TODO: make the whole thing
     public ArrayList<Token> tokenize(JSONElement element) {
         tokens = new ArrayList<Token>();
         element.accept(this);
@@ -31,7 +32,7 @@ public class TreeTokenizer implements JSONElementVisitor {
     @Override
     public void visit(JSONInteger element) {
         String content = String.valueOf(element.getValue());
-        addToken(Type.INTEGER, content);
+        addToken(Type.NUMBER, content);
     }
 
     @Override

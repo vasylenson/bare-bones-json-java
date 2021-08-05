@@ -75,14 +75,14 @@ public class Lexer {
     }
 
     private static Token matchStringLiteral(String json, int offset) throws Exception {
-        String content = "";
+        String content = "\"";
 
         for (int currentPos = offset; currentPos < json.length(); currentPos++) {
             char currentChar = json.charAt(currentPos);
+            content += currentChar;
+
             if (currentChar == '\"')
                 return new Token(Type.STRING, content);
-
-            content += currentChar;
         }
 
         throw new Exception("Malformed string literal: no closing quote.");
@@ -109,6 +109,6 @@ public class Lexer {
         if (content.length() == 0)
             return null;
 
-        return new Token(Type.INTEGER, content);
+        return new Token(Type.NUMBER, content);
     }
 }
