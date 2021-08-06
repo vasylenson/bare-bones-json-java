@@ -3,12 +3,25 @@ package main.java.Printer;
 public class DefaultWriter implements JSONBuilder {
 
     private final String indent;
+    private final String itemSeparator;
 
     private String out = "";
     private int indentLevel = 0;
+    private boolean separate = false;
+
+    public DefaultWriter() {
+        this.indent = "  ";
+        this.itemSeparator = ",\n";
+    }
 
     public DefaultWriter(String indent) {
         this.indent = indent;
+        this.itemSeparator = ",\n";
+    }
+
+    public DefaultWriter(String indent, String itemSeparator) {
+        this.indent = indent;
+        this.itemSeparator = itemSeparator;
     }
 
     public String getOutpuString() {
@@ -50,6 +63,7 @@ public class DefaultWriter implements JSONBuilder {
         out += "[";
         newline();
         indentLevel++;
+        separate = false;
     }
 
     @Override
@@ -64,6 +78,7 @@ public class DefaultWriter implements JSONBuilder {
         out += "{";
         newline();
         indentLevel++;
+        separate = false;
     }
 
     @Override
@@ -74,9 +89,18 @@ public class DefaultWriter implements JSONBuilder {
     }
 
     private void formatPrimitive(String primitive) {
+        putSeparatorIfNeeded();
         indent();
         out += primitive + ",";
         newline();
+    }
+
+    private void putSeparatorIfNeeded() {
+        if (separate) {
+            out += itemSeparator;
+        } else {
+            separate = false;
+        }
     }
 
     private void newline() {

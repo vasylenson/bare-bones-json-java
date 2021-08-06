@@ -35,7 +35,7 @@ Each feature is implemented through a dedicated visitor class.
 - [ ] Parsing
   - [x] Tokens
   - [x] Lexer
-  - [ ] Token Parser
+  - [x] Token Parser
 - [ ] Renderer
   - [x] Get the basic renderer up and and running
   - [ ] Proper printer

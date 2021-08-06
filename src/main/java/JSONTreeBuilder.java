@@ -52,7 +52,8 @@ public class JSONTreeBuilder implements JSONBuilder {
 
     @Override
     public void putKey(String representation) {
-        if (!(stack.peek() instanceof JSONObject))
+        Object currentOpen = stack.peek();
+        if (!(currentOpen instanceof JSONObject))
             throw new IllegalStateException("Can't put key: the innermost open item is not an object");
 
         String key = getStringContent(representation);
@@ -88,7 +89,7 @@ public class JSONTreeBuilder implements JSONBuilder {
     }
 
     private String getStringContent(String representation) {
-        return representation.substring(1, representation.length() - 2);
+        return representation.substring(1, representation.length() - 1);
     }
 
     private void insertItem(JSONElement item) {
@@ -107,9 +108,9 @@ public class JSONTreeBuilder implements JSONBuilder {
         }
 
         if (openElement instanceof String) {
+            String key = (String) stack.pop();
             JSONObject currentObject = (JSONObject) stack.peek();
-            currentObject.put((String) openElement, item);
-            stack.pop();
+            currentObject.put(key, item);
             return;
         }
 
