@@ -2,10 +2,11 @@ package main.java;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map.Entry;
 
+import main.java.JSONTypes.*;
 import main.java.Token.Type;
-import main.java.jsonast.*;
 
 public class TreeTokenizer implements JSONElementVisitor {
 
@@ -30,7 +31,7 @@ public class TreeTokenizer implements JSONElementVisitor {
     }
 
     @Override
-    public void visit(JSONInteger element) {
+    public void visit(JSONNumber element) {
         String content = String.valueOf(element.getValue());
         addToken(Type.NUMBER, content);
     }
@@ -45,7 +46,8 @@ public class TreeTokenizer implements JSONElementVisitor {
     public void visit(JSONArray element) {
         safeAddStaticToken(Type.LSQUARE);
 
-        JSONElement[] arrayItems = element.getItems();
+        // TODO get rid of bloody arrays
+        JSONElement[] arrayItems = (JSONElement[]) element.getItems().toArray();
         arrayItems[0].accept(this);
         for (int i = 1; i < arrayItems.length; i++) {
             safeAddStaticToken(Type.COMMA);
@@ -61,7 +63,8 @@ public class TreeTokenizer implements JSONElementVisitor {
     public void visit(JSONObject element) {
         safeAddStaticToken(Type.LCURLY);
 
-        Iterator<Entry<String, JSONElement>> items = element.getItems().iterator();
+        // TODO: figure out iteration protocols and write a sane join
+        Iterator<Entry<String, JSONElement>> items = element.items.entrySet().iterator();
         while (items.hasNext()) {
             Entry<String, JSONElement> entry = items.next();
             renderObjectEntry(entry);

@@ -1,8 +1,8 @@
 package main.java;
 
+import main.java.JSONTypes.JSONElement;
 import main.java.Printer.DefaultWriter;
 import main.java.Printer.TokenInterpreter;
-import main.java.jsonast.JSONElement;
 
 public class BBJSON {
 

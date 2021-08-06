@@ -1,10 +1,10 @@
-package main.java.jsonast;
+package main.java.JSONTypes;
 
 import main.java.JSONElementVisitor;
 
 public class JSONBool implements JSONElement {
 
-    private boolean value;
+    public boolean value;
 
     public boolean getValue() {
         return value;
@@ -16,6 +16,11 @@ public class JSONBool implements JSONElement {
 
     public void accept(JSONElementVisitor visitor) {
         visitor.visit(this);
+    }
+
+    @Override
+    public boolean equals(JSONElement other) {
+        return (other instanceof JSONBool) && ((JSONBool) other).value == value;
     }
 
 }
