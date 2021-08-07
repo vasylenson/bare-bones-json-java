@@ -14,7 +14,7 @@ public class BBJSON {
     }
 
     public String print(JSONElement json) {
-        DefaultWriter writer = new DefaultWriter("  ");
+        DefaultWriter writer = new DefaultWriter();
         TokenInterpreter tokens = new TokenInterpreter(new TreeTokenizer().tokenize(json));
         tokens.writeTo(writer);
         return writer.getOutpuString();

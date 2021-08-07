@@ -35,14 +35,10 @@ Each feature is implemented through a dedicated visitor class.
 - [ ] Parsing
   - [x] Tokens
   - [x] Lexer
-  - [x] Token Parser
+  - [x] Token Parser (`TokenInterpreter` in code, maps tokens to `JSONBuilder` interface calls)
 - [ ] Renderer
   - [x] Get the basic renderer up and and running
-  - [ ] Proper printer
-    - [x] JSON CST -> Tokens
-    - [x] Printer: Tokens -> Text (basic and hacky)
-    - [x] Printer interface, Pretty printer
-    - [ ] Decoupled formatter for Printer
+  - [x] JSON Builder implementation for string writing and formatting
 - [ ] other stuff to have in mind
   - [ ] Schema manager
     - [ ] Extract a schema from an CST and store it (or have schema represented as an actual CST)

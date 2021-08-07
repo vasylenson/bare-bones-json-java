@@ -42,7 +42,7 @@ public class Lexer {
             if (currentChar == '\"') {
                 token = matchStringLiteral(json, currentPos + 1);
                 tokens.add(token);
-                currentPos += token.getText().length() + 1; // skip the string and quotes
+                currentPos += token.getText().length() - 1;
                 continue;
             }
 

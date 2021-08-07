@@ -8,6 +8,7 @@ public class DefaultWriter implements JSONBuilder {
     private String out = "";
     private int indentLevel = 0;
     private boolean separate = false;
+    private boolean nextItemNoIndent = false;
 
     public DefaultWriter() {
         this.indent = "  ";
@@ -55,11 +56,17 @@ public class DefaultWriter implements JSONBuilder {
 
     @Override
     public void putKey(String key) {
+        putSeparatorIfNeeded();
+        indent();
         out += key + ": ";
+        nextItemNoIndent = true;
+        separate = false;
     }
 
     @Override
     public void startArray() {
+        putSeparatorIfNeeded();
+        indent();
         out += "[";
         newline();
         indentLevel++;
@@ -69,12 +76,15 @@ public class DefaultWriter implements JSONBuilder {
     @Override
     public void endArray() {
         indentLevel--;
-        out += "]";
         newline();
+        indent();
+        out += "]";
     }
 
     @Override
     public void startObject() {
+        putSeparatorIfNeeded();
+        indent();
         out += "{";
         newline();
         indentLevel++;
@@ -84,22 +94,22 @@ public class DefaultWriter implements JSONBuilder {
     @Override
     public void endObject() {
         indentLevel--;
-        out += "}";
         newline();
+        indent();
+        out += "}";
     }
 
     private void formatPrimitive(String primitive) {
         putSeparatorIfNeeded();
         indent();
-        out += primitive + ",";
-        newline();
+        out += primitive;
     }
 
     private void putSeparatorIfNeeded() {
         if (separate) {
             out += itemSeparator;
         } else {
-            separate = false;
+            separate = true;
         }
     }
 
@@ -108,6 +118,10 @@ public class DefaultWriter implements JSONBuilder {
     }
 
     private void indent() {
+        if (nextItemNoIndent) {
+            nextItemNoIndent = false;
+            return;
+        }
         out += indent.repeat(indentLevel);
     }
 }

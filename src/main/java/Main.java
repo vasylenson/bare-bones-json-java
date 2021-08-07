@@ -1,14 +1,33 @@
 package main.java;
 
 import main.java.JSONTypes.JSONElement;
+import main.java.Printer.DefaultWriter;
+import main.java.Printer.JSONBuilder;
 
 public class Main {
     public static void main(String[] args) {
-        tryTreeBuilder();
+        DefaultWriter writy = (DefaultWriter) tryBuilder(new DefaultWriter());
+        String json = writy.getOutpuString();
+        System.out.println(json);
+
+        try {
+            System.out.println(Lexer.lex(json));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        BBJSON bb = new BBJSON();
+
+        JSONElement tree = null;
+        try {
+            tree = bb.fromString(json);
+            String print = bb.print(tree);
+            System.out.println(print);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
 
-    private static JSONElement tryTreeBuilder() {
-        JSONTreeBuilder buildy = new JSONTreeBuilder();
+    private static JSONBuilder tryBuilder(JSONBuilder buildy) {
 
         buildy.startObject();
         buildy.putKey("\"array\"");
@@ -36,8 +55,6 @@ public class Main {
         buildy.putString("\"kurwa\"");
 
         buildy.endObject();
-
-        JSONElement tree = buildy.getTree();
-        return tree;
+        return buildy;
     }
 }

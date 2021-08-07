@@ -15,6 +15,8 @@ Please, pleeease don't read this crap, save yourself some time.
   - [Oh right, lexing](#oh-right-lexing)
 - [Big boy printing](#big-boy-printing)
 - [Writers](#writers)
+- [Day 7-9](#day-7-9)
+  - [Let's start over](#lets-start-over)
 
 ## Day 1
 
@@ -146,6 +148,30 @@ Instead of using recursive construction of output string, they use a separate `W
    1. it encapsulates the stateful object, the output string and lets it manage its modifications properly and safely
    2. it allows separating the formatting (done somewhere in the writer) from the token stream interpretation
 
-While on the topic of formatting, now should be the time to design a formatter-aware printer and writer. My initial idea of the `Writer` interface was to make it do all it can possibly do, i.e. put the symbols in. But even with the added bonus of nice call naming, this is not safe enough. Such actions ought to rather be `Writer`'s private methods so that its interface is idiomatic to JSON's syntax. And then, formatting can be handled inside the writer and customized with the Template Method or Strategy pattern. Or even hard-coded or customized through internal variable parameters, for all we care, as this does not effect its interface.
+While on the topic of formatting, now should be the time to design a formatter-aware printer and writer. My initial idea of the `Writer` interface was to make it do all it can possibly do, i.e. put the symbols in. But even with the added bonus of nice call naming, this is not safe enough. Such actions ought to rather be `Writer`'s private methods so that its interface is idiomatic to JSON's syntax. And then, formatting can be handled inside the writer and customized with the Template Method or Strategy pattern. Or even hard-coded or customized through internal variable parameters, for all we care, as this does not affect its interface.
 
-In this setting, the role of `Printer` receiving a stream of tokens will just be to eliminate the clutter of braces and delimiters and transtale the stream into idiomatic JSON printing requests. It probably shouldn't even manage the lifetime of the `Writer` or return the string. All of than can be later done in a Fasade.
+In this setting, the role of `Printer` receiving a stream of tokens will just be to eliminate the clutter of braces and delimiters and map the stream into idiomatic JSON printing requests. It probably shouldn't even manage the lifetime of the `Writer` or return the string. All of that can be later done in a Fasade.
+
+## Day 7-9
+
+### Let's start over
+
+So, the architecture I decided on turned out to require a lot of complex classes with plenty of duplicate code and a dire need for helper classes. Not nice, no flexible, but definitely very object-oriented, borderline object-obsessed.
+
+There were a few good ideas in there, though. Among them:
+
+- `Printer`, which translates the stream of tokens into a sequence of calls to a `Writer`. I ended up modifying this class to interoperate with the most abstract possible JSON Builder interface. Builder as in the Builder Pattern
+- `Writer` class pretty much survived the redesign. Moreover, its methods were easy to define and separate, creating clean declarative code. I mean, just take a look at that:
+
+```Java
+@Override
+public void putKey(String key) {
+    putSeparatorIfNeeded();
+    indent();
+    out += key + ": ";
+    nextItemNoIndent = true;
+    separate = false;
+}
+```
+
+This sort of style should also make it easy to add fine-grain formatting tweaks with something like a Template Method or Strategy Patterns. And with all that done and a few bug fixes later, I pretty much have the whole thing down. It's still missing a proper number literal parser (rn all number tokens just get transformed into `123`). `JSONElement` objects are missing some features. However, I'm glad to be done with the big architectural stuff for the time being.

@@ -2,7 +2,6 @@ package main.java;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map.Entry;
 
 import main.java.JSONTypes.*;
@@ -38,7 +37,7 @@ public class TreeTokenizer implements JSONElementVisitor {
 
     @Override
     public void visit(JSONString element) {
-        String content = element.getValue();
+        String content = "\"" + element.getValue() + "\"";
         addToken(Type.STRING, content);
     }
 
@@ -47,12 +46,12 @@ public class TreeTokenizer implements JSONElementVisitor {
         safeAddStaticToken(Type.LSQUARE);
 
         // TODO get rid of bloody arrays
-        JSONElement[] arrayItems = (JSONElement[]) element.getItems().toArray();
-        arrayItems[0].accept(this);
-        for (int i = 1; i < arrayItems.length; i++) {
+        ArrayList<JSONElement> arrayItems = element.getItems();
+        arrayItems.get(0).accept(this);
+        for (int i = 1; i < arrayItems.size(); i++) {
             safeAddStaticToken(Type.COMMA);
 
-            JSONElement item = arrayItems[i];
+            JSONElement item = arrayItems.get(i);
             item.accept(this);
         }
 
@@ -77,7 +76,7 @@ public class TreeTokenizer implements JSONElementVisitor {
     }
 
     private void renderObjectEntry(Entry<String, JSONElement> entry) {
-        addToken(Type.STRING, entry.getKey());
+        addToken(Type.STRING, "\"" + entry.getKey() + "\"");
         safeAddStaticToken(Type.COLON);
         entry.getValue().accept(this);
     }

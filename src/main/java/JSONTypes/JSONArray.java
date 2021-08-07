@@ -7,13 +7,13 @@ import main.java.JSONElementVisitor;
 
 public class JSONArray implements JSONElement {
 
-    private List<JSONElement> items;
+    private ArrayList<JSONElement> items;
 
     public JSONArray() {
         this.items = new ArrayList<JSONElement>();
     }
 
-    public JSONArray(List<JSONElement> items) {
+    public JSONArray(ArrayList<JSONElement> items) {
         this.items = items;
     }
 
@@ -21,7 +21,7 @@ public class JSONArray implements JSONElement {
         visitor.visit(this);
     }
 
-    public List<JSONElement> getItems() {
+    public ArrayList<JSONElement> getItems() {
         return items;
     }
 
