@@ -2,12 +2,10 @@ package main.java.JSONTypes;
 
 import main.java.JSONElementVisitor;
 
-import java.util.Collection;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 
 public class JSONObject implements JSONElement {
 

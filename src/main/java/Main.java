@@ -6,6 +6,9 @@ import main.java.Printer.JSONBuilder;
 
 public class Main {
     public static void main(String[] args) {
+    }
+
+    private static void testBBJSON() {
         DefaultWriter writy = (DefaultWriter) tryBuilder(new DefaultWriter());
         String json = writy.getOutpuString();
         System.out.println(json);

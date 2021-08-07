@@ -1,7 +1,6 @@
 package main.java.JSONTypes;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import main.java.JSONElementVisitor;
 

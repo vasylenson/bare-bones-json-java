@@ -88,7 +88,7 @@ public class Lexer {
         throw new Exception("Malformed string literal: no closing quote.");
     }
 
-    private static Token matchIntegerLiteral(String json, int offset) {
+    private static Token matchIntegerLiteral(String json, int offset) throws Exception {
         String content = "";
 
         char currentChar = json.charAt(offset);
@@ -100,7 +100,10 @@ public class Lexer {
         for (int currentPos = offset; currentPos < json.length(); currentPos++) {
             currentChar = json.charAt(currentPos);
 
-            if (!Character.isDigit(currentChar))
+            boolean isDigit = Character.isDigit(currentChar);
+            boolean isE = currentChar == 'e' || currentChar == 'E';
+            boolean isDot = currentChar == '.';
+            if (!(isDigit || isE || isDot))
                 break;
 
             content += currentChar;
@@ -108,6 +111,9 @@ public class Lexer {
 
         if (content.length() == 0)
             return null;
+
+        if (content.matches("^\\d+(\\.\\d+)?([e, E]\\d+)?$"))
+            throw new Exception("Malformed number literal: " + content);
 
         return new Token(Type.NUMBER, content);
     }
