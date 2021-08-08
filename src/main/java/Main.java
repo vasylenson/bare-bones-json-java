@@ -6,6 +6,7 @@ import main.java.Printer.JSONBuilder;
 
 public class Main {
     public static void main(String[] args) {
+        testBBJSON();
     }
 
     private static void testBBJSON() {
@@ -42,14 +43,14 @@ public class Main {
         buildy.startArray();
         buildy.putFalse();
         buildy.putTrue();
-        buildy.putNumber("123");
+        buildy.putNumber("666.123E-12");
         buildy.endArray();
 
         buildy.startObject();
         buildy.putKey("\"x\"");
-        buildy.putNumber("123");
+        buildy.putNumber("-42.23");
         buildy.putKey("\"y\"");
-        buildy.putNumber("123");
+        buildy.putNumber("69e2");
         buildy.endObject();
 
         buildy.endArray();

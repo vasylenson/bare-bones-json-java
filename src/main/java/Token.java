@@ -38,7 +38,7 @@ public class Token {
         }
 
         public static EnumSet<Type> getDelimiters() {
-            EnumSet<Type> literals = EnumSet.of(STRING, NUMBER);
+            EnumSet<Type> literals = EnumSet.of(STRING, NUMBER, NULL, TRUE, FALSE);
             return EnumSet.complementOf(literals);
         }
     }

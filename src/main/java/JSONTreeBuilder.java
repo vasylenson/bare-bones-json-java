@@ -40,13 +40,13 @@ public class JSONTreeBuilder implements JSONBuilder {
 
     @Override
     public void putNumber(String representation) {
-        // TODO make a proper number parser
-        insertItem(new JSONNumber(123));
+        Number value = parseNumber(representation);
+        insertItem(new JSONNumber(value));
     }
 
     @Override
     public void putString(String representation) {
-        String content = getStringContent(representation);
+        String content = parseString(representation);
         insertItem(new JSONString(content));
     }
 
@@ -56,7 +56,7 @@ public class JSONTreeBuilder implements JSONBuilder {
         if (!(currentOpen instanceof JSONObject))
             throw new IllegalStateException("Can't put key: the innermost open item is not an object");
 
-        String key = getStringContent(representation);
+        String key = parseString(representation);
         stack.push(key);
     }
 
@@ -88,7 +88,17 @@ public class JSONTreeBuilder implements JSONBuilder {
         insertItem(closedObject);
     }
 
-    private String getStringContent(String representation) {
+    private Number parseNumber(String representation) {
+        if (representation.matches("^[\\+, -]?\\d+$"))
+            return Integer.parseInt(representation);
+        else if (representation.matches("^[\\+, -]?\\d+[e, E][\\+, -]?\\d+$"))
+            return (int) Float.parseFloat(representation);
+        else if (representation.matches("^[\\+, -]?\\d+\\.\\d+([e, E][\\+, -]?\\d+)?$"))
+            return Float.parseFloat(representation);
+        throw new NumberFormatException("Malformed number literal");
+    }
+
+    private String parseString(String representation) {
         return representation.substring(1, representation.length() - 1);
     }
 

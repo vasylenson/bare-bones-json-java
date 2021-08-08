@@ -37,7 +37,7 @@ Each feature is implemented through a dedicated visitor class.
   - [x] Lexer
   - [x] Token Parser (`TokenInterpreter` in code, maps tokens to `JSONBuilder` interface calls)
   - [ ] Small persers
-    - [ ] Number verifier and parser
+    - [x] Number verifier and parser
     - [ ] String escaping features
 - [ ] Renderer
   - [x] Get the basic renderer up and and running

@@ -36,6 +36,7 @@ public class Lexer {
             if (token != null) {
                 tokens.add(token);
                 currentPos += token.getText().length() - 1;
+                continue;
             }
 
             // match string literal
@@ -51,7 +52,10 @@ public class Lexer {
             if (token != null) {
                 tokens.add(token);
                 currentPos += token.getText().length() - 1;
+                continue;
             }
+
+            throw new Exception("Lexing error, token not matched");
         }
 
         return tokens;
@@ -102,8 +106,8 @@ public class Lexer {
 
             boolean isDigit = Character.isDigit(currentChar);
             boolean isE = currentChar == 'e' || currentChar == 'E';
-            boolean isDot = currentChar == '.';
-            if (!(isDigit || isE || isDot))
+            boolean isDotOrSign = currentChar == '.' || currentChar == '+' || currentChar == '-';
+            if (!(isDigit || isE || isDotOrSign))
                 break;
 
             content += currentChar;
@@ -112,7 +116,7 @@ public class Lexer {
         if (content.length() == 0)
             return null;
 
-        if (content.matches("^\\d+(\\.\\d+)?([e, E]\\d+)?$"))
+        if (!content.matches("^[\\+, -]?\\d+(\\.\\d+)?([e, E]([\\+, -])?\\d+)?$"))
             throw new Exception("Malformed number literal: " + content);
 
         return new Token(Type.NUMBER, content);
