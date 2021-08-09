@@ -175,3 +175,20 @@ public void putKey(String key) {
 ```
 
 This sort of style should also make it easy to add fine-grain formatting tweaks with something like a Template Method or Strategy Patterns. And with all that done and a few bug fixes later, I pretty much have the whole thing down. It's still missing a proper number literal parser (rn all number tokens just get transformed into `123`). `JSONElement` objects are missing some features. However, I'm glad to be done with the big architectural stuff for the time being.
+
+# Day 10
+
+I used regex to check the formatting of numbers - it was pretty cool. It's a bit of a dark magic :3
+
+```Java
+// class JSONTreeBuilder
+private Number parseNumber(String representation) {
+    if (representation.matches("^[\\+, -]?\\d+$"))
+        return Integer.parseInt(representation);
+    else if (representation.matches("^[\\+, -]?\\d+[e, E][\\+, -]?\\d+$"))
+        return (int) Float.parseFloat(representation);
+    else if (representation.matches("^[\\+, -]?\\d+\\.\\d+([e, E][\\+, -]?\\d+)?$"))
+        return Float.parseFloat(representation);
+    throw new NumberFormatException("Malformed number literal");
+}
+```

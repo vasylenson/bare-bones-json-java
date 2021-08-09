@@ -45,14 +45,13 @@ public class TreeTokenizer implements JSONElementVisitor {
     public void visit(JSONArray element) {
         safeAddStaticToken(Type.LSQUARE);
 
-        // TODO get rid of bloody arrays
-        ArrayList<JSONElement> arrayItems = element.getItems();
-        arrayItems.get(0).accept(this);
-        for (int i = 1; i < arrayItems.size(); i++) {
-            safeAddStaticToken(Type.COMMA);
-
-            JSONElement item = arrayItems.get(i);
+        Iterator<JSONElement> items = element.getItems().iterator();
+        while (items.hasNext()) {
+            JSONElement item = items.next();
             item.accept(this);
+
+            if (items.hasNext())
+                safeAddStaticToken(Type.COMMA);
         }
 
         safeAddStaticToken(Type.RSQUARE);
