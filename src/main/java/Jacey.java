@@ -4,7 +4,7 @@ import main.java.JSONTypes.JSONElement;
 import main.java.Printer.DefaultWriter;
 import main.java.Printer.TokenInterpreter;
 
-public class BBJSON {
+public class Jacey {
 
     public JSONElement fromString(String json) throws Exception {
         JSONTreeBuilder builder = new JSONTreeBuilder();

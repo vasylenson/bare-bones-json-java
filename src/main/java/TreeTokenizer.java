@@ -11,7 +11,6 @@ public class TreeTokenizer implements JSONElementVisitor {
 
     private ArrayList<Token> tokens;
 
-    // TODO: make the whole thing
     public ArrayList<Token> tokenize(JSONElement element) {
         tokens = new ArrayList<Token>();
         element.accept(this);

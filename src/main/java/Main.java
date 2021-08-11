@@ -6,10 +6,10 @@ import main.java.Printer.JSONBuilder;
 
 public class Main {
     public static void main(String[] args) {
-        testBBJSON();
+        testJacey();
     }
 
-    private static void testBBJSON() {
+    private static void testJacey() {
         DefaultWriter writy = (DefaultWriter) tryBuilder(new DefaultWriter());
         String json = writy.getOutpuString();
         System.out.println(json);
@@ -19,7 +19,7 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        BBJSON bb = new BBJSON();
+        Jacey bb = new Jacey();
 
         JSONElement tree = null;
         try {

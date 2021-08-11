@@ -1,22 +1,27 @@
-# Bare-Bones JSON in Java
+# Jacey JSON parser in Java
 
-A Java rendition of the *Bare-Bones JSON* project, which, ironically, is not really bare-bones as in having a restricted feature set, but rather as in only utilizing the bare-bones standard library of the language with no third-party dependencies.
+Jacey is a simple and minimal JSON parser. It is a personal, mostly educational project that I like rewriting in different languages and paradigms. This repo contains the Java version of Jacey, aimed at exploring the language features and object-oriented design principles.
 
-## Purpose
+## Goals
 
-This is a study. This is obvious from the fact of java already having a JSON parser in the standard distribution. Also, the architecture of the project is unnecessarily complicated, as can be seen in the [TODO file](TODO.md).
+### Explore
 
-### Goals
-
-- learning the principles of OOP, GoF, GRASP design patterns
-- studying Java 
+- the principles of OOP, GoF, GRASP design patterns
+- see how OO paradigm works for parsers
+- Java 
   - the language features, idiomatic Java code
   - Java standard library, interfaces, developing classes that integrate well with language features
-- actually having a bit of fun and explore the paradigm and the platform
 
-### Non-goals
+### Create
+
+- a fully functional (as in it works) and well-tested JSON library
+- extensible and composable code
+- a lightweight, zero-dependency library. that's both a practical goal and a nice challenge
+
+## Non-goals
 
 - **highest possible performance**. Performant patterns and idioms are still preferable, but this is a rather secondary criterion.
+- **wide feature set**. new features will only be added if I consider them an interesting challenge or a useful thing to study
 - **simplicity**. the complexity of code here is ridiculous and very unnecessary. Elegance and expressiveness in architecture are more of a primary goal, though. It's debatable whether this approach will result in a maintainable codebase, but I guess I'm about to find that out :D
 
 ## Contributing
@@ -32,4 +37,4 @@ I ain’t got no way of knowing whether there is a force capable of moving someb
 
 This project is licensed under MIT License, feel free to do whatever you want with it and let me know how it goes with a pull request of a tweet.
 
-Cheers!****
+Cheers!
